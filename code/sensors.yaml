@@ -1,0 +1,91 @@
+sensors:
+# SHELF 1 - FRONT LEFT
+  logical_camera_3: # FAR END
+    type: logical_camera
+    pose:
+      xyz: [5, 3.641234, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+  
+  logical_camera_1: #NEAR END
+    type: logical_camera
+    pose:
+      xyz: [3.082385, 3.641234, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+
+# SHELF 2 - FRONT RIGHT
+  logical_camera_7: # FAR END
+    type: logical_camera
+    pose:
+      xyz: [5, -3.641234, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+  
+  logical_camera_5: # NEAR END
+    type: logical_camera
+    pose:
+      xyz: [3.082385, -3.641234, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+
+# BINS - FRONT LEFT
+  logical_camera_0: # FAR END: 3, 4, 7, 8
+    type: logical_camera
+    pose:
+      xyz: [5, 1.750927, 1.82]
+      rpy: [0, 'pi/2', 'pi/2']
+
+  logical_camera_2: # NEAR END: 1, 2, 5, 6
+    type: logical_camera
+    pose:
+      xyz: [3.082385, 1.750927, 1.82]
+      rpy: [0, 'pi/2', 'pi/2']
+
+# BINS - FRONT LEFT
+  logical_camera_4: # FAR END: 
+    type: logical_camera
+    pose:
+      xyz: [5, -1.750927, 1.82]
+      rpy: [0, 'pi/2', 'pi/2']
+
+  logical_camera_6: # NEAR END: 
+    type: logical_camera
+    pose:
+      xyz: [3.082385, -1.750927, 1.82]
+      rpy: [0, 'pi/2', 'pi/2']
+
+# SHELF 5 - BACK LEFT
+  logical_camera_8: # FRONT END
+    type: logical_camera
+    pose:
+      xyz: [-13.561708, 3.062492, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+  
+  logical_camera_9: #BACK END
+    type: logical_camera
+    pose:
+      xyz: [-15.479323, 3.062492, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+
+# SHELF 11 - BACK RIGHT
+  logical_camera_10: # FRONT END
+    type: logical_camera
+    pose:
+      xyz: [-13.561708, -3.022894, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+  
+  logical_camera_11: #BACK END
+    type: logical_camera
+    pose:
+      xyz: [-15.479323, -3.022894, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+
+# SHELF 8 - BACK RIGHT
+  logical_camera_12: # FRONT END
+    type: logical_camera
+    pose:
+      xyz: [-13.561708, -0.050444, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
+  
+  logical_camera_13: #BACK END
+    type: logical_camera
+    pose:
+      xyz: [-15.479323, -0.050444, 2.49]
+      rpy: [0, 'pi/2', 'pi/2']
