@@ -19,7 +19,7 @@ Contents
 <a name="original-proposal"/>
 
 ## Original Proposal
-To design a collaborative, multi-robot system incorporating computer vision, robot operating system (ROS), and multi-robot control to demonstrate skills needed to pursue a career as a robotics software engineer.
+To design a collaborative, multi-robot system incorporating computer vision, robot operating system (ROS), and multi-robot control to demonstrate skills needed to pursue a career as a robotics software engineer.  
 [See proposal PDF](media/OriginalProposal.pdf)
 
 The original proposal included mechanical, simulation, and computation components.
@@ -66,7 +66,8 @@ Halfway into the semester the campus closed because of COVID-19. This prevented 
 
 ### Version 4: ARIAC Competition Environment
 
-Editing the pre-built environment proved to be a massive undertaking. Just editing it to include the components I needed would have taken the rest of the semester with no time left to actually code the simulation to function as intended: to autonomously identify and sort products. 
+Editing the pre-built environment proved to be a massive undertaking. Just editing it to include the components I needed would have taken the rest of the semester with no time left to actually code the simulation to function as intended: to autonomously identify and sort products.  
+
 In searching for pre-built cameras and alternative arms to add to the environment, I found the ARIAC 2020 Competition Gazebo simulation environment. It included all of the components and associated ROS services and topics to drive them, including multiple types of camera sensors, product shelves, product bins, parts that can be programmatically created and placed throughout the environment, and an in-built "product order" system to generate orders to be fulfilled by the dual-arm robot moving throughout the environment. 
 
 **Version 4 Changes: ** See [Final Project Design](#final-project-design)
@@ -113,15 +114,15 @@ Constraints of simulation:
 	* Any of the 16 parts bins
 	* On the conveyor belt (optional)
 * Sensors can be placed in open space (they do not need to be attached to a supporting structure)
-* Scenario A:
+* [Scenario A](#results-running-simulation-a):
 	* Parts will be spawned only on shelves and bins
 	* 2 Orders with 3 parts each need to be fulfilled
 	* No unusual challenges
-* Scenario B:
+* [Scenario B](#results-running-simulation-b):
 	* Parts will be spawned only on shelves and bins
 	* 2 Orders with 3 parts each need to be fulfilled
 	* Pneumatic gripper will periodically fail, dropping a part - part must be picked again from another location
-* Scenario C:
+* [Scenario C](#results-running-simulation-c):
 	* Scenario B + parts will periodically spawn on conveyor belt
 
 <a name="base-simulation-no-sensors"/> 
@@ -202,17 +203,17 @@ alt="Simulation Video" width="640" height="480" border="1" /></a>
 
 ### Running Simulation Scenario B: 2 Orders, Products Dropped Randomly
 
-***In Progress***
-discussion of code design and plan
-image and link to video
+***In Progress***  
+discussion of code design and plan  
+image and link to video  
 
 <a name="results-running-simulation-c"/>
 
 ### Running Simulation Scenario C: Scenario B + Parts on Conveyor Belt
 
-***In Progress***
-discussion of code design and plan
-image and link to video
+***In Progress***  
+discussion of code design and plan  
+image and link to video  
 
 <a name="learned"/>
 
