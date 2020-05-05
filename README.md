@@ -70,7 +70,7 @@ Editing the pre-built environment proved to be a massive undertaking. Just editi
 
 In searching for pre-built cameras and alternative arms to add to the environment, I found the ARIAC 2020 Competition Gazebo simulation environment. It included all of the components and associated ROS services and topics to drive them, including multiple types of camera sensors, product shelves, product bins, parts that can be programmatically created and placed throughout the environment, and an in-built "product order" system to generate orders to be fulfilled by the dual-arm robot moving throughout the environment. 
 
-**Version 4 Changes: ** See [Final Project Design](#final-project-design)
+**Version 4 Changes:** See [Final Project Design](#final-project-design)
 
 ![Version 4 Components](media/version-4-components.png "Version 4 Components")
 
