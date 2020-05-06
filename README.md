@@ -14,6 +14,7 @@ Contents
 	* [Running Simulation Scenario B](#results-running-simulation-b)
 	* [Running Simulation Scenario C](#results-running-simulation-c)
 * [Learned Along the Way](#learned)
+* [Final Poster](#poster)
 
 ---
 <a name="original-proposal"/>
@@ -173,13 +174,20 @@ Entire environment running in a virtual machine (VM):
 	* MoveIT 
 
 Code Created (in [code folder](code)):
-* [YAML file placing sensors in environment](code/sensors.yaml)
-* [MoveIT python file to run simulation](code/simulation.py)
-	* Reads sensors to locate all products
-	* Reads "product order" topic
-	* Transforms product frame
-	* Calls path planning algorithm
-	* Picks parts and delivers them to correct order-fulfillment cart
+* [YAML file placing sensors in environment (used for all scenarios)](code/sensors.yaml)
+* Scenario A: 2 Orders, No Challenges ([see results](#results-running-simulation-a))
+	* [YAML file placing parts in environment](code/scenario_a.yaml)
+	* [MoveIT python file to run simulations](code/scenario_a.py)
+		* Reads sensors to locate all products
+		* Reads "product order" topic
+		* Transforms product frame
+		* Calls path planning algorithm
+		* Picks parts and delivers them to correct order-fulfillment cart
+* Scenario B: 1 Order, Products Dropped Randomly ([see results](#results-running-simulation-b))
+	* [YAML file placing parts in environment and enabling "drops"](code/scenario_b.yaml)
+	* [MoveIT python file to run simulations](code/scenario_b.py)
+		* Same as above, but handles dropped parts 
+		* Detects drop, removes part from list of known parts, and ensures part is picked from another location 
 
 <a name="results"/>
 
@@ -195,23 +203,32 @@ The automated set of orders is read (as a ROS topic; again, provided by the ARIA
 The location of the next part on the order is parsed to determine how to get the robot to it, and MoveIT is used to calculate the path to the part.  
 The robot picks each part and delivers it to the robotic tray assigned to that order.   
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=V9PfVaut9fU
-" target="_new"><img src="http://img.youtube.com/vi/V9PfVaut9fU/0.jpg" 
-alt="Simulation Video" width="640" height="480" border="1" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=pt40IvR71J0
+" target="_new"><img src="http://img.youtube.com/vi/pt40IvR71J0/0.jpg" 
+alt="Simulation Video, Scenario A" width="640" height="480" border="1" /></a>
 
 <a name="results-running-simulation-b"/>
 
-### Running Simulation Scenario B: 2 Orders, Products Dropped Randomly
+### Running Simulation Scenario B: 1 Order, Products Dropped Randomly
 
-***In Progress***  
-discussion of code design and plan  
-image and link to video  
+This scenario is similar to Scenario A above, except the robot arm grippers periodically fail, dropping the products before they're delivered to the tray assigned to the order. My code must detect this dropped product and ensure a replacement part is picked again at some point to still fulfill the order successfully.  
+One key challenge is ensuring the dropped part is removed from the list of avaialble parts (so the arm does not go back to an empty spot and attempt to pick it up again).    
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=2A0HCQzOzHU
+" target="_new"><img src="http://img.youtube.com/vi/2A0HCQzOzHU/0.jpg" 
+alt="Simulation Video, Scenario B" width="640" height="480" border="1" /></a>
 
 <a name="results-running-simulation-c"/>
 
-### Running Simulation Scenario C: Scenario B + Parts on Conveyor Belt
+### Running Simulation Scenario C: Scenario B + [Some additional Challenge]
 
-***In Progress***  
+***TBD***  
+**Options (in order of difficulty):** 
+* Spawn faulty products and detect them using QA sensors on order fulfillment trays (and replace them)
+* Order update mid-process; necessitates changing the order while it is being fulfilled, including possibly removing parts already on fulfillment tray
+* Moving obstacles: people walking in the aisles must be detected and routed around to reach parts
+* Parts spawn on conveyor belt and must be picked while it is moving
+
 discussion of code design and plan  
 image and link to video  
 
@@ -238,3 +255,11 @@ Update Ideal New Simulation Environment:
 -   Remap Arm Joints
 -   Add Logical Cameras
 -   Design Control Algorithm
+
+<a name="poster"/>
+
+## Final Poster
+
+[Poster PDF](media/FinalPoster.pdf)
+
+![Final Poster](media/FinalPoster.png "Final Poster")
