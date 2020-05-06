@@ -124,7 +124,7 @@ Constraints of simulation:
 	* 2 Orders with 3 parts each need to be fulfilled
 	* Pneumatic gripper will periodically fail, dropping a part - part must be picked again from another location
 * [Scenario C](#results-running-simulation-c):
-	* Scenario B + parts will periodically spawn on conveyor belt
+	* Scenario B + additional challenges TBD
 
 <a name="base-simulation-no-sensors"/> 
 
