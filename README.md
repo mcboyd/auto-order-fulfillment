@@ -113,18 +113,18 @@ Constraints of simulation:
 * Parts will be spawned automatically in any of:
 	* Middle shelf of 5 of 11 shelving units (3 rear shelves and 2 front shelves)
 	* Any of the 16 parts bins
-	* On the conveyor belt (optional)
+	* Parts will be spawned only on shelves and bins (not on conveyor belt)
 * Sensors can be placed in open space (they do not need to be attached to a supporting structure)
-* [Scenario A](#results-running-simulation-a):
-	* Parts will be spawned only on shelves and bins
+* [Scenario A: 2 Orders, No Challenges](#results-running-simulation-a):
 	* 2 Orders with 3 parts each need to be fulfilled
 	* No unusual challenges
-* [Scenario B](#results-running-simulation-b):
-	* Parts will be spawned only on shelves and bins
-	* 2 Orders with 3 parts each need to be fulfilled
+* [Scenario B: 1 Order, Products Dropped Randomly](#results-running-simulation-b):
+	* 1 Order with 3 parts needs to be fulfilled
 	* Pneumatic gripper will periodically fail, dropping a part - part must be picked again from another location
-* [Scenario C](#results-running-simulation-c):
-	* Scenario B + additional challenges TBD
+* [Scenario C: 1 Order, Moving Obstacle](#results-running-simulation-c):
+	* 1 Order with 3 parts needs to be fulfilled
+	* A moving obstacle must be avoided in an aisle between shelves
+		* Moving obstacle moves up and down the aisle, pausing at each end of the aisle for an unknown amount of time
 
 <a name="base-simulation-no-sensors"/> 
 
@@ -147,13 +147,23 @@ Each logical cameras each has its own reference frame separate from the world fr
 	* 2 each per shelf where parts may spawn
 	* 1 for every group of 4 parts bins where parts may spawn
 
-[YAML file placing sensors in environment](code/sensors.yaml)   
+[YAML file placing logical cameras in environment](code/sensors.yaml)  
 
+For "Scenario C: : 1 Order, Moving Obstacle" I added 3 breakbeam sensors in the aisle to detect the movement of the obstacle.  
+
+[YAML file placing logical cameras **+ 3 breakbeam sensors** in environment](code/scenario_c_sensors.yaml)  
+
+**Logical Camera**  
 ![Logical Camera](media/logical_camera.png "Logical Camera")
 
+**Logical Cameras View 1**  
 ![Sensors View 1](media/Sensors_View1.png "Sensors View 1")
 
+**Logical Cameras View 2**  
 ![Sensors View 2](media/Sensors_View2.png "Sensors View 2")
+
+**Scenario C w/ Moving Obstacle & Breakbeam Sensors**  
+![Scenario C w/ Moving Obstacle & Breakbeam Sensors](media/moving_obstacle.png "Scenario C w/ Moving Obstacle & Breakbeam Sensors")
 
 <a name="software-setup"/>
 
@@ -174,7 +184,8 @@ Entire environment running in a virtual machine (VM):
 	* MoveIT 
 
 Code Created (in [code folder](code)):
-* [YAML file placing sensors in environment (used for all scenarios)](code/sensors.yaml)
+* [YAML file placing logical cameras in environment - Scenarios A & B](code/sensors.yaml)
+* [YAML file placing logical cameras + breakbeams in environment - Scenario C](code/sensors.yaml)
 * Scenario A: 2 Orders, No Challenges ([see results](#results-running-simulation-a))
 	* [YAML file placing parts in environment](code/scenario_a.yaml)
 	* [MoveIT python file to run simulations](code/scenario_a.py)
@@ -188,6 +199,11 @@ Code Created (in [code folder](code)):
 	* [MoveIT python file to run simulations](code/scenario_b.py)
 		* Same as above, but handles dropped parts 
 		* Detects drop, removes part from list of known parts, and ensures part is picked from another location 
+* Scenario C: 1 Order, Moving Obstacle ([see results](#results-running-simulation-c))
+	* [YAML file placing parts in environment and enabling "moving obstacle"](code/scenario_c.yaml)
+	* [MoveIT python file to run simulations](code/scenario_c.py)
+		* Same as above, but navigates around moving obstacle by reading 3 new breakbeam sensors
+		* Detects parts needed in aisle where person is moving, moves to space between shelves and waits for person to move toward far end of aisle.  
 
 <a name="results"/>
 
@@ -220,17 +236,15 @@ alt="Simulation Video, Scenario B" width="640" height="480" border="1" /></a>
 
 <a name="results-running-simulation-c"/>
 
-### Running Simulation Scenario C: Scenario B + [Some additional Challenge]
+### Running Simulation Scenario C: 1 Order, Moving Obstacle
 
-***TBD***  
-**Options (in order of difficulty):** 
-* Spawn faulty products and detect them using QA sensors on order fulfillment trays (and replace them)
-* Order update mid-process; necessitates changing the order while it is being fulfilled, including possibly removing parts already on fulfillment tray
-* Moving obstacles: people walking in the aisles must be detected and routed around to reach parts
-* Parts spawn on conveyor belt and must be picked while it is moving
+This scenario is similar to Scenario A above, except there is now a "moving obstacle" (a person on a two-wheeled scooter) moving up and down one of the aisles between the shelves. This person must be detected and navigated around. My code reads the breakbeam sensors to detect the location and motion of the person to enter the aisle at the safest possible time when there is plenty of time to pick the part before the person returns.   
+One key challenge is the fact that the gantry cannot move past the end of the aisle. So it cannot simply move past the shelves to get out of the person's way - it must move back up the aisle, toward the oncoming person, to exit the aisle at the space between the shelves.  
+An additional challenge was adding code to read the breakbeam sensors regularly while other code was executing. I took advantage of the ROS subscriber mechanism to do these reads and compare values to determine when to move the robot.  
 
-discussion of code design and plan  
-image and link to video  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-LakTUTWxyY
+" target="_new"><img src="http://img.youtube.com/vi/-LakTUTWxyY/0.jpg" 
+alt="Simulation Video, Scenario C" width="640" height="480" border="1" /></a>
 
 <a name="learned"/>
 
@@ -255,6 +269,11 @@ Update Ideal New Simulation Environment:
 -   Remap Arm Joints
 -   Add Logical Cameras
 -   Design Control Algorithm
+
+ROS:
+-   Using YAML files to place sensors
+-   Reading sensors and their message structure in code
+-   Subscribing to topics to read and update values in the background
 
 <a name="poster"/>
 
