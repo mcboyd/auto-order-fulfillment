@@ -1,4 +1,9 @@
 # Auto Order Fulfillment
+
+Semester project in Boston University Electrical & Computer Engineering Masters program.   
+**By Matthew Boyd**  
+*Faculty: Osama Alshaykh*  
+
 Contents
 * [Original Proposal](#original-proposal)
 * [Challenges and Adjustments](#challenges-adjustments)
@@ -149,7 +154,7 @@ Each logical cameras each has its own reference frame separate from the world fr
 
 [YAML file placing logical cameras in environment](code/sensors.yaml)  
 
-For "Scenario C: : 1 Order, Moving Obstacle" I added 3 breakbeam sensors in the aisle to detect the movement of the obstacle.  
+For "Scenario C: 1 Order, Moving Obstacle" I added 3 breakbeam sensors in the aisle to detect the movement of the obstacle.  
 
 [YAML file placing logical cameras **+ 3 breakbeam sensors** in environment](code/scenario_c_sensors.yaml)  
 
@@ -185,7 +190,7 @@ Entire environment running in a virtual machine (VM):
 
 Code Created (in [code folder](code)):
 * [YAML file placing logical cameras in environment - Scenarios A & B](code/sensors.yaml)
-* [YAML file placing logical cameras + breakbeams in environment - Scenario C](code/sensors.yaml)
+* [YAML file placing logical cameras + breakbeams in environment - Scenario C](code/scenario_c_sensors.yaml)
 * Scenario A: 2 Orders, No Challenges ([see results](#results-running-simulation-a))
 	* [YAML file placing parts in environment](code/scenario_a.yaml)
 	* [MoveIT python file to run simulations](code/scenario_a.py)
