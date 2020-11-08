@@ -1,6 +1,6 @@
 # Auto Order Fulfillment
 
-Semester project in Boston University Electrical & Computer Engineering Masters program.   
+Semester project in Boston University Electrical & Computer Engineering Master's program.   
 **By Matthew Boyd**  
 *Faculty: Osama Alshaykh*  
 
